@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#9bb9d8">
+<meta name="description" content="یادداشت شیشه‌ای؛ یادداشت‌های چاپخانه، وام و روزمره">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<title>یادداشت شیشه‌ای</title>
+<style>
+:root{--ink:#182333;--muted:#566579;--line:rgba(255,255,255,.62);--glass:rgba(255,255,255,.32)}
+*{box-sizing:border-box}
+html{min-height:100%;background:#a9bfd8}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:Tahoma,"Segoe UI",sans-serif;
+background:
+radial-gradient(ellipse at 18% 12%,rgba(255,255,255,.72),transparent 28%),
+radial-gradient(ellipse at 86% 25%,rgba(248,203,187,.82),transparent 30%),
+radial-gradient(ellipse at 54% 92%,rgba(255,169,112,.78),transparent 30%),
+linear-gradient(145deg,#91afd4 0%,#c8d3e5 42%,#f3c4b2 72%,#748da8 100%);
+background-attachment:fixed;padding:env(safe-area-inset-top) 12px env(safe-area-inset-bottom)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.app{max-width:1200px;margin:0 auto;padding:14px 0 26px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;margin-bottom:12px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.27);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 10px 34px rgba(32,49,75,.12)}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand-icon{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:rgba(255,255,255,.56);font-size:25px}
+h1{font-size:clamp(18px,3vw,25px);margin:0 0 4px;font-weight:800}
+.sub{font-size:12px;color:#45556a}
+.actions{display:flex;gap:8px;flex-shrink:0}
+.btn{border:1px solid rgba(255,255,255,.72);background:rgba(255,255,255,.54);color:#24354c;border-radius:14px;padding:10px 13px;font-weight:700}
+.btn.primary{background:#253f63;color:#fff;border-color:#253f63}
+.btn.icon{font-size:20px;width:43px;height:43px;padding:0}
+.columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:stretch}
+.column{min-width:0;border:1px solid var(--line);border-radius:24px;background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 12px 34px rgba(33,48,72,.13);padding:12px;display:flex;flex-direction:column;min-height:360px}
+.heading{display:flex;align-items:center;gap:8px;padding:11px 12px;border:1px solid rgba(255,255,255,.7);border-radius:17px;font-size:17px;font-weight:800;margin-bottom:10px}
+.heading .symbol{font-size:22px;line-height:1}
+.print .heading{background:rgba(218,198,255,.76);color:#39285e}
+.loan .heading{background:rgba(168,239,220,.77);color:#174d48}
+.daily .heading{background:rgba(255,207,193,.8);color:#7b3c2b}
+.note-list{display:flex;flex-direction:column;gap:7px;flex:1}
+.note{display:flex;align-items:flex-start;gap:9px;padding:10px 5px;border-radius:13px}
+.note:hover{background:rgba(255,255,255,.23)}
+.check{flex:0 0 25px;width:25px;height:25px;border-radius:50%;border:2px solid rgba(255,255,255,.95);background:rgba(255,255,255,.16);color:white;display:grid;place-items:center;padding:0;margin-top:1px;font-size:15px;line-height:1}
+.note.done .check{background:var(--accent);border-color:var(--accent)}
+.note-text{min-width:0;flex:1;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65;font-size:14px;text-align:right}
+.note.done .note-text{opacity:.6;text-decoration:line-through}
+.note-actions{display:flex;gap:3px;opacity:.65}
+.small-action{border:0;background:transparent;color:#24354c;padding:2px 4px;font-size:14px;border-radius:7px}
+.small-action:hover{background:rgba(255,255,255,.5)}
+.add{width:100%;margin-top:12px;border:1px solid rgba(255,255,255,.78);background:rgba(255,255,255,.28);color:#31445e;border-radius:15px;padding:12px 8px;font-size:13px}
+.empty{color:#566579;text-align:center;font-size:12px;padding:14px 4px}
+.footer{text-align:center;color:#30445c;font-size:11px;margin:14px 0 0}
+dialog{border:1px solid rgba(255,255,255,.85);border-radius:24px;padding:0;width:min(92vw,440px);background:rgba(241,246,252,.94);color:var(--ink);box-shadow:0 24px 70px rgba(25,38,60,.28)}
+dialog::backdrop{background:rgba(22,35,54,.38);backdrop-filter:blur(5px)}
+.dialog-inner{padding:20px}
+.dialog-inner h2{font-size:19px;margin:0 0 16px}
+.field{display:block;margin:12px 0}
+.field span{display:block;font-size:13px;font-weight:700;margin-bottom:7px}
+.field input,.field textarea,.field select{width:100%;border:1px solid #c7d2e0;background:white;border-radius:12px;padding:12px;color:#1b2a3d;outline:none}
+.field textarea{resize:vertical;min-height:115px}
+.dialog-actions{display:flex;gap:8px;justify-content:flex-start;margin-top:16px}
+@media(max-width:650px){
+ body{padding-left:7px;padding-right:7px}
+ .app{padding-top:7px}
+ .top{padding:11px;border-radius:19px}
+ .brand-icon{width:38px;height:38px;font-size:21px}
+ .sub{display:none}
+ .btn{padding:9px 10px}
+ .btn.icon{width:39px;height:39px}
+ .columns{gap:6px}
+ .column{padding:6px;border-radius:17px;min-height:400px}
+ .heading{padding:9px 5px;gap:4px;font-size:12px;border-radius:12px;justify-content:center}
+ .heading .symbol{font-size:17px}
+ .note{gap:5px;padding:8px 1px}
+ .check{flex-basis:20px;width:20px;height:20px;font-size:12px}
+ .note-text{font-size:11px;line-height:1.7}
+ .note-actions{gap:0;flex-direction:column}
+ .small-action{font-size:11px;padding:1px 3px}
+ .add{font-size:10px;padding:10px 2px;border-radius:12px}
+ .empty{font-size:10px}
+}
+@media(min-width:651px) and (max-width:850px){.note-text{font-size:13px}.column{padding:9px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <div class="brand-icon" aria-hidden="true">✍️</div>
+      <div><h1>یادداشت شیشه‌ای</h1><div class="sub">یادداشت‌هات رو مرتب نگه دار</div></div>
+    </div>
+    <div class="actions">
+      <button class="btn icon" id="installBtn" title="نصب روی صفحه اصلی" hidden>⇩</button>
+      <button class="btn icon" id="addBtn" title="یادداشت جدید">＋</button>
+    </div>
+  </header>
+  <main class="columns">
+    <section class="column print" data-category="print" style="--accent:#7650bd">
+      <div class="heading"><span class="symbol">🖨️</span><span>چاپخانه</span></div>
+      <div class="note-list" id="list-print"></div>
+      <button class="add" data-add="print">＋ یادداشت جدید</button>
+    </section>
+    <section class="column loan" data-category="loan" style="--accent:#1ca77d">
+      <div class="heading"><span class="symbol">🪙</span><span>وام</span></div>
+      <div class="note-list" id="list-loan"></div>
+      <button class="add" data-add="loan">＋ یادداشت جدید</button>
+    </section>
+    <section class="column daily" data-category="daily" style="--accent:#e76c4b">
+      <div class="heading"><span class="symbol">🏠</span><span>روزمره</span></div>
+      <div class="note-list" id="list-daily"></div>
+      <button class="add" data-add="daily">＋ یادداشت جدید</button>
+    </section>
+  </main>
+  <p class="footer">یادداشت‌ها روی همین دستگاه ذخیره می‌شوند.</p>
+</div>
+<dialog id="noteDialog">
+  <form id="noteForm" class="dialog-inner">
+    <h2 id="dialogTitle">یادداشت جدید</h2>
+    <label class="field"><span>بخش</span><select id="category"><option value="print">چاپخانه</option><option value="loan">وام</option><option value="daily">روزمره</option></select></label>
+    <label class="field"><span>متن یادداشت</span><textarea id="noteText" maxlength="1200" placeholder="یادداشتت رو اینجا بنویس..." required></textarea></label>
+    <div class="dialog-actions">
+      <button type="submit" class="btn primary">ذخیره</button>
+      <button type="button" id="cancelBtn" class="btn">انصراف</button>
+    </div>
+  </form>
+</dialog>
+<script>
+const KEY='glass-notes-v1';
+const categories=['print','loan','daily'];
+const labels={print:'چاپخانه',loan:'وام',daily:'روزمره'};
+const starter=[
+ {id:crypto.randomUUID(),category:'print',text:'پیگیری سفارش‌های چاپ',done:false},
+ {id:crypto.randomUUID(),category:'loan',text:'بررسی اقساط وام',done:false},
+ {id:crypto.randomUUID(),category:'daily',text:'برنامه‌ریزی کارهای امروز',done:false}
+];
+let notes;
+try{notes=JSON.parse(localStorage.getItem(KEY)||'null');if(!Array.isArray(notes))notes=starter}catch(e){notes=starter}
+const dialog=document.getElementById('noteDialog'), form=document.getElementById('noteForm');
+const categoryEl=document.getElementById('category'), textEl=document.getElementById('noteText');
+let editingId=null, pendingInstall=null;
+function persist(){localStorage.setItem(KEY,JSON.stringify(notes))}
+function render(){
+ categories.forEach(cat=>{
+  const list=document.getElementById('list-'+cat);list.replaceChildren();
+  const filtered=notes.filter(n=>n.category===cat);
+  if(!filtered.length){const e=document.createElement('div');e.className='empty';e.textContent='هنوز یادداشتی نداری';list.append(e)}
+  filtered.forEach(n=>{
+   const row=document.createElement('div');row.className='note'+(n.done?' done':'');
+   const check=document.createElement('button');check.className='check';check.type='button';check.setAttribute('aria-label',n.done?'علامت‌گذاری به‌عنوان انجام‌نشده':'علامت‌گذاری به‌عنوان انجام‌شده');check.textContent=n.done?'✓':'';
+   check.onclick=()=>{n.done=!n.done;persist();render()};
+   const txt=document.createElement('div');txt.className='note-text';txt.textContent=n.text;
+   const actions=document.createElement('div');actions.className='note-actions';
+   const edit=document.createElement('button');edit.className='small-action';edit.type='button';edit.title='ویرایش';edit.textContent='✎';edit.onclick=()=>openEditor(cat,n.id);
+   const del=document.createElement('button');del.className='small-action';del.type='button';del.title='حذف';del.textContent='×';del.onclick=()=>{if(confirm('این یادداشت حذف شود؟')){notes=notes.filter(x=>x.id!==n.id);persist();render()}};
+   actions.append(edit,del);row.append(check,txt,actions);list.append(row);
+  });
+ });
+}
+function openEditor(cat='daily',id=null){
+ editingId=id;const n=id?notes.find(x=>x.id===id):null;
+ document.getElementById('dialogTitle').textContent=n?'ویرایش یادداشت':'یادداشت جدید';
+ categoryEl.value=n?n.category:cat;textEl.value=n?n.text:'';
+ dialog.showModal();setTimeout(()=>textEl.focus(),80)
+}
+form.addEventListener('submit',e=>{
+ e.preventDefault();const text=textEl.value.trim();if(!text)return;
+ if(editingId){const n=notes.find(x=>x.id===editingId);if(n){n.text=text;n.category=categoryEl.value}}
+ else notes.unshift({id:crypto.randomUUID(),category:categoryEl.value,text,done:false});
+ persist();render();dialog.close()
+});
+document.getElementById('cancelBtn').onclick=()=>dialog.close();
+document.getElementById('addBtn').onclick=()=>openEditor('daily');
+document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>openEditor(b.dataset.add));
+render();
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();pendingInstall=e;document.getElementById('installBtn').hidden=false});
+document.getElementById('installBtn').onclick=async()=>{if(!pendingInstall){alert('از منوی سه‌نقطه مرورگر، گزینه Add to Home screen یا Install app را انتخاب کن.');return}pendingInstall.prompt();await pendingInstall.userChoice;pendingInstall=null};
+</script>
+</body>
+</html>
